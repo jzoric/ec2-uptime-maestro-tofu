@@ -12,7 +12,7 @@ This OpenTofu module creates a Lambda function that can manage EC2 instances (st
 
 ```hcl
 module "ec2_uptime_maestro" {
-  source = "https://github.com/jzoric/ec2-uptime-maestro-tofu"
+  source = "git::https://github.com/jzoric/ec2-uptime-maestro-tofu?ref=v1.0.0"
 
   aws_region = "eu-central-1"
 
