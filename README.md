@@ -8,6 +8,10 @@ This OpenTofu module creates a Lambda function that can manage EC2 instances (st
 - Downloads and packages a custom binary for the Lambda function
 - Configures EventBridge rules for triggering the lambda function
 
+## Prerequisites
+
+EC2 instances need to have the tag: `ec2maestro:yes`
+
 ## Usage
 
 ```hcl
@@ -24,7 +28,11 @@ module "ec2_uptime_maestro" {
 
   tags = {
     Environment = "production"
-    Project     = "ec2-uptime-management"
+    Project     = "ec2-uptime-maestro"
   }
 }
 ```
+
+## Links
+
+- Lambda repository: https://github.com/jzoric/ec2-uptime-maestro-lambda
