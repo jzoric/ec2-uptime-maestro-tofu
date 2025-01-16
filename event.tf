@@ -17,7 +17,7 @@ resource "aws_cloudwatch_event_rule" "stop_instances" {
 resource "aws_cloudwatch_event_target" "start_lambda" {
  rule      = aws_cloudwatch_event_rule.start_instances.name
  target_id = "StartEC2Instances"
- arn       = aws_lambda_function.ec2_maestro_uptime.arn
+ arn       = aws_lambda_function.ec2_uptime_maestro.arn
 
  input = jsonencode({
    "detail-type" = "start"
@@ -27,7 +27,7 @@ resource "aws_cloudwatch_event_target" "start_lambda" {
 resource "aws_cloudwatch_event_target" "stop_lambda" {
  rule      = aws_cloudwatch_event_rule.stop_instances.name
  target_id = "StopEC2Instances"
- arn       = aws_lambda_function.ec2_maestro_uptime.arn
+ arn       = aws_lambda_function.ec2_uptime_maestro.arn
 
  input = jsonencode({
    "detail-type" = "stop"
@@ -37,7 +37,7 @@ resource "aws_cloudwatch_event_target" "stop_lambda" {
 resource "aws_lambda_permission" "allow_eventbridge_start" {
  statement_id  = "AllowEventBridgeStart"
  action        = "lambda:InvokeFunction"
- function_name = aws_lambda_function.ec2_maestro_uptime.function_name
+ function_name = aws_lambda_function.ec2_uptime_maestro.function_name
  principal     = "events.amazonaws.com"
  source_arn    = aws_cloudwatch_event_rule.start_instances.arn
 }
@@ -45,7 +45,7 @@ resource "aws_lambda_permission" "allow_eventbridge_start" {
 resource "aws_lambda_permission" "allow_eventbridge_stop" {
  statement_id  = "AllowEventBridgeStop"
  action        = "lambda:InvokeFunction"
- function_name = aws_lambda_function.ec2_maestro_uptime.function_name
+ function_name = aws_lambda_function.ec2_uptime_maestro.function_name
  principal     = "events.amazonaws.com"
  source_arn    = aws_cloudwatch_event_rule.stop_instances.arn
 }
