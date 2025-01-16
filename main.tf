@@ -68,7 +68,7 @@ data "archive_file" "lambda_zip" {
   depends_on = [null_resource.download_binary]
 }
 
-resource "aws_lambda_function" "ec_uptime_maestro" {
+resource "aws_lambda_function" "ec2_uptime_maestro" {
   filename         = data.archive_file.lambda_zip.output_path 
   function_name    = var.function_name
   role            = aws_iam_role.lambda_role.arn
