@@ -16,7 +16,7 @@ EC2 instances need to have the tag: `ec2maestro:yes`
 
 ```hcl
 module "ec2_uptime_maestro" {
-  source = "git::https://github.com/jzoric/ec2-uptime-maestro-tofu?ref=v1.0.0"
+  source = "git::https://github.com/jzoric/ec2-uptime-maestro-tofu?ref=v1.0.1"
 
   aws_region = "eu-central-1"
 
