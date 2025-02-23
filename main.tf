@@ -53,8 +53,8 @@ resource "null_resource" "download_binary" {
 
   provisioner "local-exec" {
     command = <<EOT
-      curl -L ${var.binary_url} -o ${path.module}/bootstrap
-      echo "${var.binary_sha256}  ${path.module}/bootstrap" | sha256sum -c
+      curl -L ${var.binary_url} -o ${path.module}/bootstrap && \
+      echo "${var.binary_sha256}  ${path.module}/bootstrap" | sha256sum -c - && \
       chmod +x ${path.module}/bootstrap
     EOT
   }
